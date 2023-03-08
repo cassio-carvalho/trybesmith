@@ -25,6 +25,12 @@ class ProductModel {
     );
     return products as Product[];
   };
+
+  public updateProducts = async (productsIds: number[], orderId: number) => {
+    const q = 'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?';
+    const result = productsIds.map((id) => this.connection.execute(q, [orderId, id]));
+    Promise.all(result);
+  };
 }
 
 export default ProductModel;
