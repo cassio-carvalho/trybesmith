@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import Login from '../interfaces/login.interface';
 import UserService from '../services/user.service';
 
 const secret = process.env.JWT_SECRET || 'senha';
@@ -18,6 +19,14 @@ class UserController {
     const token = jwt.sign(payload, secret);
 
     return res.status(201).json({ token });
+  };
+
+  public userLogin = async (req: Request<unknown, unknown, Login>, res: Response) => {
+    const { error, status, token } = await this.service.getUser(req.body);
+    if (error) {
+      return res.status(status).json(error);
+    }
+    res.status(200).json({ token });
   };
 }
 
