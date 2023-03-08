@@ -18,7 +18,15 @@ class OrderController {
 
   public createNewOrder = async (req: Request, res: Response) => {
     const { productsIds, userId } = req.body;
-    await this.service.createNewOrder(productsIds, userId);
+    console.log(`Body: ${req.body}`);
+    
+    // const { productsIds } = req.body;
+    // const userId = Object.values(res.locals.user);
+    // console.log(`productsIds, userIds: ${productsIds}; ${userId}`);
+    
+    // console.log(`CreateNewOrder ${await this.service.createNewOrder(productsIds, userId)}`);
+    await this.service.createNewOrder(userId, productsIds);
+    
     return res.status(201).json({ userId, productsIds });
   };
 }

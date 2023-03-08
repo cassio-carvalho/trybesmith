@@ -8,10 +8,12 @@ const orders = Router();
 
 const orderController = new OrderController();
 
-const { validateProduct } = new ValidateProductsIds();
+const { validateProductIds } = new ValidateProductsIds();
 
 orders.get('/orders', orderController.getAllOrders);
 
-orders.post('/orders', validateToken, validateProduct, orderController.createNewOrder);
+// console.log(`Log validateToken rota: ${validateToken}`);
+
+orders.post('/orders', validateToken, validateProductIds, orderController.createNewOrder);
 
 export default orders;

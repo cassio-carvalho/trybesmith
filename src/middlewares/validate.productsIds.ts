@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 export default class ValidateProductsIds {
-  validateProduct = (req:Request, res:Response, next:NextFunction) => {
+  validateProductIds = (req:Request, res:Response, next:NextFunction) => {
     const productsId: [] = req.body.productsIds;
     if (!productsId) {
       return res.status(400).json({ message: '"productsIds" is required' });

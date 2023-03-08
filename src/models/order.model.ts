@@ -21,9 +21,11 @@ class OrderModel {
     return result as Order[];
   }; 
 
-  public async createNewOrder(userId: number) {
-    const q = 'INSERT INTO Trybesmith.orders (user_id) VALUE (?)';
+  public async createNewOrder(userId: number): Promise<number> {
+    console.log(`User Id => ${userId}`);
+    const q = 'INSERT INTO Trybesmith.orders (user_id) VALUES (?)';
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(q, [userId]);
+    
     return insertId;
   }
 

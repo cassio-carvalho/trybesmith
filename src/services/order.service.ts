@@ -21,8 +21,11 @@ class OrderService {
 
   public createNewOrder = async (userId: number, productsIds:number[]): Promise<void> => {
     const orderId = await this.model.createNewOrder(userId);
+    console.log(`Service orderId: ${orderId}`);
+    
     await Promise.all(productsIds
       .map((id) => this.model.updateOrder(id, orderId)));
+    // .map((id) => this.productModel.updateProducts(id, orderId)));
   };
 }
 

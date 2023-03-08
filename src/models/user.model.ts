@@ -35,6 +35,8 @@ class UserModel {
       WHERE username = ? AND password = ?;`,
       [username, password],
       );
+    console.log(`Resultado de getUser => ${result[0].id}`);
+      
     return result;
   }
 }

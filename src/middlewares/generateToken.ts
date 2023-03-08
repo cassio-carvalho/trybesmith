@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import User from '../interfaces/user.interface';
 
 dotenv.config();
@@ -7,12 +7,13 @@ dotenv.config();
 const secret = process.env.JWT_SECRET || '';
 
 const generateToken = (user: User) => {
-  const payload: User = {
+  const payload = {
+    id: user.id,
     username: user.username,
     vocation: user.vocation,
     level: user.level,
     password: user.password,
-  };
+  } as JwtPayload;
 
   const token = jwt.sign(payload, secret);
 
