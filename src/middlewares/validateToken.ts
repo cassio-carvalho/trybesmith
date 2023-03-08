@@ -31,7 +31,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   try {
     const payload = jwt.verify(authorization as string, process.env.JWT_SECRET as string);
     const { id } = payload as JwtPayload;
-    console.log(`Id payload ${id}`);
+    // console.log(`Id payload ${id}`);
     
     // req.body.userId = (jwt.decode(authorization) as JwtPayload).payload.id;
     req.body.userId = id;
